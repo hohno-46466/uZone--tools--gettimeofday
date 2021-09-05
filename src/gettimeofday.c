@@ -7,7 +7,7 @@
 struct timeval tv;
 struct timezone tz;
 
-#define DEBUG
+// #define DEBUG
 
 #define MINIBUFFLEN (32)
 float fx;
@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
   } else if (strlen(argv[1]) < MINIBUFFLEN) {
     fx = 0.0;
     sscanf(argv[1], "%f", &fx);
-    printf("c: [%f]\n", fx);
+    // printf("c: [%f]\n", fx);
   }
 
   int retval = 0;
