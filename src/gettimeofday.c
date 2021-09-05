@@ -16,12 +16,14 @@ bool debugFlag = true;
 bool debugFlag = false;
 #endif // DEBUG
 */
-bool debugFlag = false;
 
 #define MINIBUFFLEN (32)
-float fx;
 
+bool debugFlag = false;
+float fx = 0.0;
 char *pname = NULL;
+
+// ---------------------------------------------------------
 
 void exit_after_help() {
   fprintf(stderr, "usage: %s [-h|--help] [-d] [offset]\n", pname);
@@ -29,6 +31,8 @@ void exit_after_help() {
 }
 
 
+// ---------------------------------------------------------
+//
 int main(int argc, char **argv) {
 
   pname = argv[0];
@@ -36,27 +40,29 @@ int main(int argc, char **argv) {
   for(int i = 1; i < argc; i++) {
 
     if ((argv[i][0] == '-') && (argv[i][1] == 'h')) {
+      // -h : show help then exit
       exit_after_help();
       /*NOTREACHED*/
   
     } else if ((argv[i][0] == '-') && (argv[i][1] == 'd')) {
+      // -d : debug mode
       debugFlag = true;
 
     } else if ((argv[i][0] == '-') && (argv[i][1] == '-')) {
-      // No long options
+      // No long options are supported
       exit_after_help();
       /*NOTREACHED*/
   
     } else if (strlen(argv[i]) < MINIBUFFLEN) {
-      fx = 0.0;
-      sscanf(argv[i], "%f", &fx);
-      // printf("c: [%f]\n", fx);
+      if (sscanf(argv[i], "%f", &fx) != 1) {
+        fx = 0.0;
+      }
     }
   }
 
   int retval = 0;
   if ((retval = gettimeofday(&tv, &tz)) != 0) {
-	exit (retval);
+    exit (retval);
   }
 
   if (debugFlag) {
@@ -64,22 +70,23 @@ int main(int argc, char **argv) {
   }
 
   int offset1 = (int)fabsf(fx);
-  int offset2 = (fabsf(fx)-offset1) * 1000000;
+  int offset2 = (fabsf(fx) - offset1) * 1000000; // 0 <= offset2 < 1000000
 
   if (fx > 0.0) {
     tv.tv_sec  += offset1;
     tv.tv_usec += offset2;
-    if (tv.tv_usec > 1000000) {  // tv.tv_usec can not be greater than 2000000
+    if (tv.tv_usec >= 1000000) {  // in this case, 1000000 <= tv.tv_usec < 2000000
       tv.tv_sec  += 1;
-      tv.tv_usec %= 1000000;
+      tv.tv_usec -= 1000000;
     }
 
   } else if (fx < 0.0) {
     tv.tv_sec  -= offset1;
-    tv.tv_usec -= offset2;  // tv.tv_usec can not be less than -2000000
-    if (tv.tv_usec < 0) {
+    tv.tv_usec -= offset2;
+    if (tv.tv_usec < 0) { // in this case, -1000000 < tv.tv_usec < 0
       tv.tv_sec  -= 1;
-      tv.tv_usec = 1000000 - (abs(tv.tv_usec) % 1000000);
+      // tv.tv_usec = 1000000 - (abs(tv.tv_usec) % 1000000);
+      tv.tv_usec += 1000000;
     }
 
   } else {
