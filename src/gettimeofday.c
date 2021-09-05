@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
 
 
 #ifdef DEBUG
-  printf("DEBUG: %ld %ld ", tv.tv_sec, tv.tv_usec);
+  printf("DEBUG: %ld %6ld ", tv.tv_sec, tv.tv_usec);
 #endif // DEBUG
 
   int offset1 = (int)fabsf(fx);
@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
   printf("%f %d %d -> ", fx, offset1, offset2);
 #endif // DEBUG
 
-  printf("%ld %ld\n", tv.tv_sec, tv.tv_usec);
+  printf("%ld %6ld\n", tv.tv_sec, tv.tv_usec);
 
   exit (0);
 }
