@@ -9,40 +9,49 @@ struct timeval tv;
 struct timezone tz;
 
 // #define DEBUG
-
+/*
 #ifdef DEBUG
 bool debugFlag = true;
 # else // DEBUG
 bool debugFlag = false;
 #endif // DEBUG
+*/
+bool debugFlag = false;
 
 #define MINIBUFFLEN (32)
 float fx;
 
+char *pname = NULL;
+
 void exit_after_help() {
-  fprintf(stderr, "usage: gettimeofday [-h|--help] [offset]\n");
+  fprintf(stderr, "usage: %s [-h|--help] [-d] [offset]\n", pname);
   exit(1);
 }
 
+
 int main(int argc, char **argv) {
 
-  if (argc == 1) {
-    if (debugFlag) {
-      printf("Debug: no args\n");
-    } 
+  pname = argv[0];
 
-  } else if ((argv[1][0] == '-') && (argv[1][1] == 'h')) {
-    exit_after_help();
-    /*NOTREACHED*/
+  for(int i = 1; i < argc; i++) {
 
-  } else if ((argv[1][0] == '-') && (argv[1][1] == '-')) {
-    exit_after_help();
-    /*NOTREACHED*/
+    if ((argv[i][0] == '-') && (argv[i][1] == 'h')) {
+      exit_after_help();
+      /*NOTREACHED*/
+  
+    } else if ((argv[i][0] == '-') && (argv[i][1] == 'd')) {
+      debugFlag = true;
 
-  } else if (strlen(argv[1]) < MINIBUFFLEN) {
-    fx = 0.0;
-    sscanf(argv[1], "%f", &fx);
-    // printf("c: [%f]\n", fx);
+    } else if ((argv[i][0] == '-') && (argv[i][1] == '-')) {
+      // No long options
+      exit_after_help();
+      /*NOTREACHED*/
+  
+    } else if (strlen(argv[i]) < MINIBUFFLEN) {
+      fx = 0.0;
+      sscanf(argv[i], "%f", &fx);
+      // printf("c: [%f]\n", fx);
+    }
   }
 
   int retval = 0;
