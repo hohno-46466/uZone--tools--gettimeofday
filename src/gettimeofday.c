@@ -1,3 +1,13 @@
+// gettimeofday (gtd) command
+
+// First version: Mon Sep  6 17:46:16 JST 2021 by @hohno_at_kuimc
+
+// Public domain
+
+// See also: https://github.com/hohno-46466/uZone--tools--gettimeofday.git
+
+// ---------------------------------------------------------
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -6,16 +16,7 @@
 #include <math.h>
 
 struct timeval tv;
-struct timezone tz;
-
-// #define DEBUG
-/*
-#ifdef DEBUG
-bool debugFlag = true;
-# else // DEBUG
-bool debugFlag = false;
-#endif // DEBUG
-*/
+// struct timezone tz;
 
 #define MINIBUFFLEN (32)
 
@@ -30,9 +31,9 @@ void exit_after_help() {
   exit(1);
 }
 
-
 // ---------------------------------------------------------
 //
+
 int main(int argc, char **argv) {
 
   pname = argv[0];
@@ -43,7 +44,7 @@ int main(int argc, char **argv) {
       // -h : show help then exit
       exit_after_help();
       /*NOTREACHED*/
-  
+
     } else if ((argv[i][0] == '-') && (argv[i][1] == 'd')) {
       // -d : debug mode
       debugFlag = true;
@@ -52,7 +53,7 @@ int main(int argc, char **argv) {
       // No long options are supported
       exit_after_help();
       /*NOTREACHED*/
-  
+
     } else if (strlen(argv[i]) < MINIBUFFLEN) {
       if (sscanf(argv[i], "%f", &fx) != 1) {
         fx = 0.0;
@@ -61,7 +62,7 @@ int main(int argc, char **argv) {
   }
 
   int retval = 0;
-  if ((retval = gettimeofday(&tv, &tz)) != 0) {
+  if ((retval = gettimeofday(&tv, NULL/*&tz*/)) != 0) {
     exit (retval);
   }
 
@@ -90,7 +91,7 @@ int main(int argc, char **argv) {
     }
 
   } else {
-    // do nothing
+    // in this case, we do nothing
   }
 
   if (debugFlag) {
