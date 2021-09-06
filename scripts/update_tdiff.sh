@@ -6,7 +6,7 @@
 
 DEBUG=N
 
-TDIFF_FILE=$HOME/etc/timediff
+TDIFF_FILE=$HOME/etc/gtd-timediff.dat
 GUARD_TIME=60
 
 td=-1
