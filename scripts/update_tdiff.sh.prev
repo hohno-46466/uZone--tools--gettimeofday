@@ -2,34 +2,18 @@
 
 # gettimeofday
 
-# Last update: Tue Sep 14 08:47:24 JST 2021
-
 # See also: git@github.com:hohno-46466/uZone--tools--gettimeofday.git
 
-# public domain
-
 DEBUG=N
-FORCE=N
 
 TDIFF_FILE=$HOME/etc/gtd-timediff.dat
 GUARD_TIME=60
 
-PNAME=$(basename $0)
-
 td=-1
 
-while [ "x$1" != "x" ]; do
-  if [ "x$1" = "x-d" -o "x$1" = "x--debug" ]; then
-    DEBUG=Y
-  elif [ "x$1" = "x-f" -o "x$1" = "x--force" ]; then
-    FORCE=Y
-  elif [ "x$1" = "x-h" -o "x$1" = "x--help" ]; then
-    echo "$PNAME [-d|--debug] [-f|--force] [-h|--help]"
-    exit
-  fi
-  shift
-done
-
+if [ "x$1" = "x-d" -o "x$1" = "x--debug" ]; then
+  DEBUG=Y
+fi
 
 if [ -f ${TDIFF_FILE} ]; then
   z=$(egrep '^[0-9]* [0-9]*' $TDIFF_FILE | head -1)
@@ -43,7 +27,7 @@ if [ -f ${TDIFF_FILE} ]; then
   fi
 fi
 
-if [ "x$FORCE" = "xN" -a $td -ge 0 -a $td -lt $GUARD_TIME ] ; then
+if [ $td -ge 0 -a $td -lt $GUARD_TIME ] ; then
   [ "x$DEBUG" = "xY" ] && echo -n "DEBUG: (1) "
   echo "$T1s $T1u" | tee $TDIFF_FILE
 else
