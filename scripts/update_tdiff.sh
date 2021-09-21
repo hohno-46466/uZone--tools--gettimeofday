@@ -17,6 +17,7 @@ GUARD_TIME=60
 PNAME=$(basename $0)
 
 ntpdate=/usr/sbin/ntpdate
+# ntpdate=/usr/local/sbin/ntpdate
 # ntpdate=/opt/homebrew/sbin/ntpdate
 
 if [ ! -d $HOME/etc ] ; then mkdir $HOME/etc; fi
