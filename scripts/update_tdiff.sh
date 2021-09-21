@@ -16,6 +16,11 @@ GUARD_TIME=60
 
 PNAME=$(basename $0)
 
+ntpdate=/usr/sbin/ntpdate
+# ntpdate=/opt/homebrew/sbin/ntpdate
+
+if [ ! -d $HOME/etc ] ; then mkdir $HOME/etc; fi
+
 td=-1
 
 while [ "x$1" != "x" ]; do
@@ -47,7 +52,7 @@ if [ "x$FORCE" = "xN" -a $td -ge 0 -a $td -lt $GUARD_TIME ] ; then
   [ "x$DEBUG" = "xY" ] && echo -n "DEBUG: (1) "
   echo "$T1s $T1u" | tee $TDIFF_FILE
 else
-  z2=$(/usr/sbin/ntpdate -q ntp.nict.jp | tail -1 | awk '{print $10}')
+  z2=$($ntpdate -q ntp.nict.jp | tail -1 | awk '{print $10}')
   z1=$(/bin/date +%s) # z1 must be set after z2 has been set. Because settings z2 takes long time.
   [ "x$DEBUG" = "xY" ] && echo -n "DEBUG: (2) "
   echo "$z1 $z2" | tee $TDIFF_FILE
