@@ -1,4 +1,4 @@
-# uZone--tools--gettimeofday
+# GitHub/uZone--tools--gettimeofday
 
 A small tool to execute gettimeofday() and show the current time from UNIX epoch which has a tiny trick.
 
