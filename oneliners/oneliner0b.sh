@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 # set -x
 ntpdate=/usr/sbin/ntpdate

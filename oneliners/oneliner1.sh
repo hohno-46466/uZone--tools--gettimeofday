@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
  
 gtdOffset=${1-$gtdOffset}
 
