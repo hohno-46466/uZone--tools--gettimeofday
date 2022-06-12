@@ -2,7 +2,7 @@
 
 A small tool to execute gettimeofday() and show the current time from UNIX epoch which has a tiny trick.
 
-    uZone--tools--gettimeofday
+    ./uZone--tools--gettimeofday
      ├── oneliners
      │   ├── oneliner0a.sh
      │   ├── oneliner0b.sh
