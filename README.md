@@ -3,6 +3,25 @@
 A small tool to execute gettimeofday() and show the current time from UNIX epoch which has a tiny trick.
 
     ./uZone--tools--gettimeofday
+     ├──  README.md
+     ├──  README.md.old
+     ├──  oneliners/
+     │   ├──  oneliner0a.sh
+     │   ├──  oneliner0b.sh
+     │   └──  oneliner1.sh
+     ├──  scripts/
+     │   ├──  update_tdiff.sh
+     │   └──  update_tdiff.sh.prev
+     └──  src/
+         ├──  Makefile
+         └──  gettimeofday.c
+     
+     3 directories, 9 files (Sun Jul 17 22:39:00 JST 2022)
+
+
+A small tool to execute gettimeofday() and show the current time from UNIX epoch which has a tiny trick.
+
+    ./uZone--tools--gettimeofday
      ├── oneliners
      │   ├── oneliner0a.sh
      │   ├── oneliner0b.sh
