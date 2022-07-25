@@ -36,9 +36,9 @@ A small tool to execute gettimeofday() and show the current time from UNIX epoch
      
      3 directories, 8 files (Tue 14 Sep 2021 04:31:13 PM JST)
 
-# Note: url = https://github.com/hohno-46466/uZone--tools--gettimeofday
+Note: url = https://github.com/hohno-46466/uZone--tools--gettimeofday
 
-# Note: url = git@github.com:hohno-46466/uZone--tools--gettimeofday.git
+Note: url = git@github.com:hohno-46466/uZone--tools--gettimeofday.git
 
 -EOF-
 
