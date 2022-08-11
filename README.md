@@ -16,7 +16,7 @@ A small tool to execute gettimeofday() and show the current time from UNIX epoch
          ├──  Makefile
          └──  gettimeofday.c
      
-     3 directories, 9 files (Mon Aug  8 21:42:53 JST 2022)
+     3 directories, 9 files (Thu Aug 11 20:36:09 JST 2022)
 
 
 Note: URL = https://github.com/hohno-46466/uZone--tools--gettimeofday
