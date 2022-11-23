@@ -2,7 +2,7 @@
 
 # gettimeofday
 
-# Last update: Tue Sep 14 08:47:24 JST 2021
+# Last updated: Tue Sep 14 08:47:24 JST 2021
 
 # See also: git@github.com:hohno-46466/uZone--tools--gettimeofday.git
 
